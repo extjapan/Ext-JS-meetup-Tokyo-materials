@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="http://ajax.googleapis.com/ajax/libs/ext-core/3.0.0/ext-core.js"></script>
+<script>
+function randomInteger(low, high) { return low + Math.floor(Math.random() * (high - low)); }
+
+function randomFloat(low, high) { return low + Math.random() * (high - low); }
+
+function pixelValue(value) { return value + 'px'; }
+ 
+function durationValue(value) { return value + 's'; }
+
+function init() {
+	for (i=0; i<30; i++) {
+		var imgName		= (Math.random() < 0.5) ? 'http://www.wanpug.com/illust450_thumb.gif' : 'http://www.wanpug.com/illust455_thumb.gif';
+
+		var left 		= pixelValue(randomInteger(0, 1000));
+		var duration	= durationValue(randomFloat(5, 11));
+		var delay		= durationValue(randomFloat(0, 5));
+		var style		= String.format('top: {0}; left: {1}; -webkit-animation-name: fade, drop; -webkit-animation-duration: {2}, {2}; -webkit-animation-delay: {3}, {3};', '-100px', left, duration, delay);
+
+		var animName	= (Math.random() < 0.5) ? 'clockwiseSpin' : 'counterclockwiseSpinAndFlip';
+		var duration2	= durationValue(randomFloat(4, 8));
+		var style2		= String.format('-webkit-animation-name: {0}; -webkit-animation-duration: {1};', animName, duration2);
+
+		Ext.DomHelper.append('container', {
+			tag: 		'div',
+			style:		style,
+			children:	[{
+				tag:		'img',
+				src:		imgName,
+				style:		style2
+			}]
+		});
+	}
+}
+
+Ext.onReady(function() {
+	init();
+});
+
+</script>
+<style>
+#container 
+{
+    position:			absolute;
+    width:				100%;
+    height:				100%;
+}
+
+#container > div 
+{
+    position:			absolute;
+    width:				100px;
+    height:				100px;
+    
+    /* We use the following properties to apply the fade and drop animations to each leaf.
+       Each of these properties takes two values. These values respectively match a setting
+       for fade and drop.
+    */
+    -webkit-animation-iteration-count:	infinite, infinite;
+    -webkit-animation-direction:		normal, normal;
+    -webkit-animation-timing-function:	linear, ease-in;
+}
+
+#container > div > img {
+     position:	absolute;
+
+    /* We use the following properties to adjust the clockwiseSpin or counterclockwiseSpinAndFlip
+       animations on each leaf.
+       The createALeaf function in the Leaves.js file determines whether a leaf has the 
+       clockwiseSpin or counterclockwiseSpinAndFlip animation.
+    */
+     -webkit-animation-iteration-count: infinite;
+     -webkit-animation-direction:		alternate;
+     -webkit-animation-timing-function:	ease-in-out;
+     -webkit-transform-origin:			50% -100%;
+}
+ 
+
+/* Hides a leaf towards the very end of the animation */
+@-webkit-keyframes fade
+{
+    /* Show a leaf while into or below 95 percent of the animation and hide it, otherwise */
+    0%   { opacity: 1; }
+    95%  { opacity: 1; }
+    100% { opacity: 0; }
+}
+ 
+/* Makes a leaf fall from -300 to 600 pixels in the y-axis */
+@-webkit-keyframes drop
+{
+    /* Move a leaf to -300 pixels in the y-axis at the start of the animation */
+    0%   { -webkit-transform: translate(0px, -50px); }
+    /* Move a leaf to 600 pixels in the y-axis at the end of the animation */
+    100% { -webkit-transform: translate(0px, 700px); }
+}
+ 
+/* Rotates a leaf from -50 to 50 degrees in 2D space */
+@-webkit-keyframes clockwiseSpin
+{
+    /* Rotate a leaf by -50 degrees in 2D space at the start of the animation */
+    0%   { -webkit-transform: rotate(-50deg); }
+    /*  Rotate a leaf by 50 degrees in 2D space at the end of the animation */
+    100% { -webkit-transform: rotate(50deg); }
+}
+ 
+ 
+/* Flips a leaf and rotates it from 50 to -50 degrees in 2D space */
+@-webkit-keyframes counterclockwiseSpinAndFlip 
+{
+    /* Flip a leaf and rotate it by 50 degrees in 2D space at the start of the animation */
+    0%   { -webkit-transform: scale(-1, 1) rotate(50deg); }
+    /* Flip a leaf and rotate it by -50 degrees in 2D space at the end of the animation */
+    100% { -webkit-transform: scale(-1, 1) rotate(-50deg); }
+}
+</style>
+</head>
+<body>
+<div id="container"></div>
+<img src="http://farm1.static.flickr.com/43/77217056_357863e7c0_o.jpg" width="1024" height="680" alt="Bell" />
+</body>
+</html>
