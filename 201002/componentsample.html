@@ -1,0 +1,111 @@
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <title>Ext JS勉強会2月@東京 コードリーディング用サンプルコード</title>
+    <link rel="stylesheet" type="text/css" href="http://extjs.cachefly.net/ext-3.1.1/resources/css/ext-all.css" />
+    <script type="text/javascript" src="http://extjs.cachefly.net/ext-3.1.1/adapter/ext/ext-base.js"></script>
+    <script type="text/javascript" src="http://extjs.cachefly.net/ext-3.1.1/ext-all-debug.js"> </script>
+
+    <style>
+      div.mycmp {
+        border: solid 1px black;
+        width: 300px;
+        padding: 10px 5px 10px 5px;
+        margin-top: 5px;
+      }
+
+      .mycmp-over {
+        background-color: yellow;
+      }
+
+    </style>
+    <script type="text/javascript"><!--
+      // ComponentではなくBoxComponentを継承していますが・・・（レイアウト時にsetSizeが必要なので）
+      MyComponent = Ext.extend(Ext.BoxComponent,{
+        ctCls: 'mycmp',
+        overCls: 'mycmp-over',
+
+        // 3.xから使えるようになった tpl
+        tpl: new Ext.XTemplate('<p class="name">氏名: {name}</p>',
+              '<p class="title">役職: {title}</p>',
+              '<p class="company">企業: {company}</p>'),
+
+        // initComponentをオーバーライド
+        initComponent: function(){
+          // タグの中身を書き換えているだけです
+          if(this.renderTo){
+            var el = Ext.get(this.renderTo);
+            var data = el.dom.innerHTML.split('/');
+            if(Ext.isArray(data) && data.length == 3){
+              this.data = {
+                name: data[0],
+                title: data[1],
+                company: data[2]
+              };
+            }
+            el.dom.innerHTML = '';
+          }
+
+          // スーパークラスを呼び出し
+          MyComponent.superclass.initComponent.call(this);
+        }
+      });
+
+      // xtypeの登録
+      Ext.reg('mycmp', MyComponent);
+
+      Ext.BLANK_IMAGE_URL = "http://extjs.cachefly.net/ext-3.1.1/resources/images/default/s.gif";
+      Ext.onReady(function(){
+
+      // このコメントアウト部分であればComponentを継承しただけでも動きます
+      /*
+        Ext.select('.mycmpdiv', true).each(function(el){
+          new MyComponent({
+            renderTo: el
+          });
+        });
+      */
+        new Ext.Viewport({
+          layout: 'border',
+          defaults:{
+            layout: 'fit'  
+          },
+          items:[{
+            region: 'north',
+            height: 200,
+            items:{
+              xtype: 'mycmp',
+              renderTo: 'north'
+            }
+          },{
+            region: 'east',
+            width: 200,
+            items:{
+              xtype: 'mycmp',
+              renderTo: 'east'
+            }
+          },{
+            region: 'west',
+            width: 200,
+            items:{
+              xtype: 'mycmp',
+              renderTo: 'west'
+            }
+          },{
+            region: 'center',
+            items:{
+              xtype: 'mycmp',
+              renderTo: 'center'
+            }
+          }]
+        });
+      });
+    // --></script>
+  </head>
+  <body>
+    <div class="mycmpdiv" id="north">鈴木一郎/プロ野球/シアトルマリナーズ</div>
+    <div class="mycmpdiv" id="west">浅田真央/フィギュアスケート/中京大学</div>
+    <div class="mycmpdiv" id="center">中村俊輔/サッカー/エスパニョール</div>
+    <div class="mycmpdiv" id="east">石川遼/ゴルフ/パナソニック</div>
+  </body>
+</html>
