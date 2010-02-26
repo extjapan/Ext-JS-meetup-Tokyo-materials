@@ -1,23 +1,23 @@
 Ext.Component = function(config){
     config = config || {};
-		// Ext.Actionを利用するComponent（Buttonなど）あるいはComponentをクローンする場合
+    // Ext.Actionを利用するComponent（Buttonなど）あるいはComponentをクローンする場合
     if(config.initialConfig){
         if(config.isAction){           // actions
             this.baseAction = config;
         }
         config = config.initialConfig; // component cloning / action set up
-		// Elementが渡された場合
+    // Elementが渡された場合
     }else if(config.tagName || config.dom || Ext.isString(config)){ // element object
         config = {applyTo: config, id: config.id || config};
     }
 
-		// 初期コンフィグを保存
+    // 初期コンフィグを保存
     this.initialConfig = config;
 
-		// コンフィグをコピー
+    // コンフィグをコピー
     Ext.apply(this, config);
 
-		// イベントを定義
+    // イベントを定義
     this.addEvents(
         'added',
         'disable',
@@ -37,23 +37,23 @@ Ext.Component = function(config){
         'statesave'
     );
 
-		// IDがなければIDを付与
+    // IDがなければIDを付与
     this.getId();
 
     Ext.ComponentMgr.register(this);
 
-		// initComponentより前にObservableのコンストラクタが呼び出される
+    // initComponentより前にObservableのコンストラクタが呼び出される
     Ext.Component.superclass.constructor.call(this); // Ext.util.Observable
 
-		// this.baseActionはExt.Actionのインスタンス
+    // this.baseActionはExt.Actionのインスタンス
     if(this.baseAction){
         this.baseAction.addComponent(this);
     }
 
-		// Componentの初期化（サブクラスでの実装）
+    // Componentの初期化（サブクラスでの実装）
     this.initComponent();
 
-		// プラグインの初期化
+    // プラグインの初期化
     if(this.plugins){
         if(Ext.isArray(this.plugins)){
             for(var i = 0, len = this.plugins.length; i < len; i++){
@@ -64,12 +64,12 @@ Ext.Component = function(config){
         }
     }
 
-		// コンポーネントの状態復元
+    // コンポーネントの状態復元
     if(this.stateful !== false){
         this.initState();
     }
 
-		// マークアップへの適用
+    // マークアップへの適用
     if(this.applyTo){
         this.applyToMarkup(this.applyTo);
         delete this.applyTo;
@@ -136,7 +136,7 @@ Ext.extend(Ext.Component, Ext.util.Observable, {
                 }
             }
 
-						// 実際の描画処理はここ
+            // 実際の描画処理はここ
             this.onRender(this.container, position || null);
 
             if(this.autoShow){
@@ -156,7 +156,7 @@ Ext.extend(Ext.Component, Ext.util.Observable, {
             this.fireEvent('render', this);
 
 
-						// Componentの「中身」はrenderイベントの後で描画
+            // Componentの「中身」はrenderイベントの後で描画
             var contentTarget = this.getContentTarget();
             if (this.html){
                 contentTarget.update(Ext.DomHelper.markup(this.html));
@@ -192,7 +192,7 @@ Ext.extend(Ext.Component, Ext.util.Observable, {
                 this.initStateEvents();
             }
 
-						// 状態が全て整ってからafterrenderを発生
+            // 状態が全て整ってからafterrenderを発生
             this.fireEvent('afterrender', this);
         }
         return this;
@@ -338,7 +338,7 @@ Ext.extend(Ext.Component, Ext.util.Observable, {
     // private
     // default function is not really useful
 
-		// 実際の描画処理はここ
+    // 実際の描画処理はここ
     onRender : function(ct, position){
         if(!this.el && this.autoEl){
             if(Ext.isString(this.autoEl)){
@@ -492,7 +492,7 @@ Ext.extend(Ext.Component, Ext.util.Observable, {
     show : function(){
         if(this.fireEvent('beforeshow', this) !== false){
             this.hidden = false;
-						// QuickTips等
+            // QuickTips等
             if(this.autoRender){
                 this.render(Ext.isBoolean(this.autoRender) ? Ext.getBody() : this.autoRender);
             }
