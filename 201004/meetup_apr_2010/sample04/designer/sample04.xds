@@ -1,0 +1,256 @@
+{
+	"name": "sample04.xds",
+	"projectId": "8BCAE5C3-2CEF-44A3-98C2-C82F645B8A8C",
+	"settings": {
+		"urlPrefix": "http://localhost/~naotori/extdesigner/samples/meetup_apr_2010/sample04/",
+		"directAPI": "",
+		"spacesToIndent": "4",
+		"codeGenFormat": "Class",
+		"extPath": "http://extjs.cachefly.net/ext-3.2.0/"
+	},
+	"xdsVersion": "xds-1.0.0.8",
+	"components": [
+		{
+			"cid": "viewport",
+			"jsClass": "MyViewport",
+			"userConfig": {
+				"layout": "border"
+			},
+			"cn": [
+				{
+					"cid": "tabpanel",
+					"jsClass": "MyPanel",
+					"userConfig": {
+						"region": "center",
+						"split": true,
+						"title": "Center",
+						"activeTab": 0
+					},
+					"cn": [
+						{
+							"cid": "panel",
+							"jsClass": "MyForm",
+							"layoutConfig": {
+								"align": "stretch"
+							},
+							"userConfig": {
+								"title": "Form",
+								"layout": "vbox"
+							},
+							"cn": [
+								{
+									"cid": "form",
+									"jsClass": "MyPanel1",
+									"userConfig": {
+										"title": "-ext-undefined-",
+										"bodyStyle": "padding:10px",
+										"border": false,
+										"autoRef": "form"
+									},
+									"cn": [
+										{
+											"cid": "numberfield",
+											"jsClass": "MyField3",
+											"userConfig": {
+												"name": "idField",
+												"fieldLabel": "ID"
+											}
+										},
+										{
+											"cid": "textfield",
+											"jsClass": "MyField4",
+											"userConfig": {
+												"name": "nameField",
+												"fieldLabel": "Name"
+											}
+										},
+										{
+											"cid": "textarea",
+											"jsClass": "MyField5",
+											"userConfig": {
+												"fieldLabel": "Description",
+												"name": "descField"
+											}
+										}
+									]
+								},
+								{
+									"cid": "panel",
+									"jsClass": "MyPanel2",
+									"layoutConfig": {
+										"pack": "center",
+										"align": "top"
+									},
+									"userConfig": {
+										"title": "-ext-undefined-",
+										"border": false,
+										"flex": 1,
+										"layout": "hbox",
+										"defaults": {
+											"margins": "0 5px 0 0"
+										}
+									},
+									"cn": [
+										{
+											"cid": "button",
+											"jsClass": "MyButton",
+											"userConfig": {
+												"text": "OK",
+												"width": 100,
+												"autoRef": "btnOk"
+											}
+										},
+										{
+											"cid": "button",
+											"jsClass": "MyButton1",
+											"userConfig": {
+												"text": "Cancel",
+												"width": 100,
+												"autoRef": "btnCancel"
+											}
+										}
+									]
+								},
+								{
+									"cid": "grid",
+									"jsClass": "MyGrid",
+									"userConfig": {
+										"viewConfig": {
+											"forceFit": true
+										},
+										"store": "MyStore",
+										"autoRef": "grid2",
+										"flex": 3,
+										"title": "-ext-undefined-"
+									},
+									"cn": [
+										{
+											"cid": "gridcolumn",
+											"jsClass": "MyColumn",
+											"userConfig": {
+												"dataIndex": "id",
+												"header": "ID"
+											}
+										},
+										{
+											"cid": "gridcolumn",
+											"jsClass": "MyColumn1",
+											"userConfig": {
+												"dataIndex": "name",
+												"header": "Name"
+											}
+										},
+										{
+											"cid": "gridcolumn",
+											"jsClass": "MyColumn2",
+											"userConfig": {
+												"header": "Description",
+												"dataIndex": "desc"
+											}
+										}
+									]
+								}
+							]
+						},
+						{
+							"cid": "grid",
+							"jsClass": "MyGrid",
+							"userConfig": {
+								"viewConfig": {
+									"forceFit": true
+								},
+								"store": "MyStore",
+								"autoRef": "grid"
+							},
+							"cn": [
+								{
+									"cid": "gridcolumn",
+									"jsClass": "MyColumn",
+									"userConfig": {
+										"dataIndex": "id",
+										"header": "ID"
+									}
+								},
+								{
+									"cid": "gridcolumn",
+									"jsClass": "MyColumn1",
+									"userConfig": {
+										"dataIndex": "name",
+										"header": "Name"
+									}
+								},
+								{
+									"cid": "gridcolumn",
+									"jsClass": "MyColumn2",
+									"userConfig": {
+										"header": "Description",
+										"dataIndex": "desc"
+									}
+								}
+							]
+						}
+					]
+				},
+				{
+					"cid": "tree",
+					"jsClass": "MyTree",
+					"userConfig": {
+						"region": "west",
+						"width": 209,
+						"split": true,
+						"autoRef": "tree"
+					},
+					"cn": [
+						{
+							"cid": "asyncnode",
+							"dock": "root",
+							"userConfig": {
+								"text": "Root Node"
+							}
+						},
+						{
+							"cid": "asynctreeloader",
+							"dock": "loader",
+							"userConfig": {
+								"url": "tree.json"
+							}
+						}
+					]
+				}
+			]
+		}
+	],
+	"stores": [
+		{
+			"cid": "jsonstore",
+			"jsClass": "MyStore",
+			"userConfig": {
+				"url": "data01.json",
+				"autoLoad": false
+			},
+			"cn": [
+				{
+					"cid": "datafield",
+					"jsClass": "MyField",
+					"userConfig": {
+						"name": "id"
+					}
+				},
+				{
+					"cid": "datafield",
+					"jsClass": "MyField1",
+					"userConfig": {
+						"name": "name"
+					}
+				},
+				{
+					"cid": "datafield",
+					"jsClass": "MyField2",
+					"userConfig": {
+						"name": "desc"
+					}
+				}
+			]
+		}
+	]
+}

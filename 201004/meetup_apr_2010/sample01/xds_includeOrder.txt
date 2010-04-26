@@ -1,0 +1,2 @@
+<script type="text/javascript" src="MyPanel.ui.js"></script>
+<script type="text/javascript" src="MyPanel.js"></script>

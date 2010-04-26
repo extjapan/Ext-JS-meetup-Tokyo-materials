@@ -1,0 +1,24 @@
+{
+	"projectId": "33587BB9-65B2-4196-8EC2-FCBAB78278E2",
+	"settings": {
+		"urlPrefix": "http://localhost/~naotori/extdesigner/samples/meetup_apr_2010/sample01/",
+		"directAPI": "",
+		"spacesToIndent": "4",
+		"codeGenFormat": "Class",
+		"extPath": "http://extjs.cachefly.net/ext-3.2.0/"
+	},
+	"xdsVersion": "xds-1.0.0.8",
+	"components": [
+		{
+			"cid": "panel",
+			"jsClass": "MyPanel",
+			"userConfig": {
+				"title": "My First Ext Designer Panel",
+				"html": "Hello, World!",
+				"width": 598,
+				"height": 366
+			}
+		}
+	],
+	"stores": []
+}

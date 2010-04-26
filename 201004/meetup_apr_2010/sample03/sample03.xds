@@ -1,0 +1,136 @@
+{
+	"name": "sample03.xds",
+	"projectId": "8BCAE5C3-2CEF-44A3-98C2-C82F645B8A8C",
+	"settings": {
+		"urlPrefix": "http://localhost/~naotori/extdesigner/samples/meetup_apr_2010/sample03/",
+		"directAPI": "",
+		"spacesToIndent": "4",
+		"codeGenFormat": "Class",
+		"extPath": "http://extjs.cachefly.net/ext-3.2.0/"
+	},
+	"xdsVersion": "xds-1.0.0.8",
+	"components": [
+		{
+			"cid": "viewport",
+			"jsClass": "MyViewport",
+			"userConfig": {
+				"layout": "border"
+			},
+			"cn": [
+				{
+					"cid": "tabpanel",
+					"jsClass": "MyPanel",
+					"userConfig": {
+						"region": "center",
+						"split": true,
+						"title": "Center",
+						"activeTab": 1
+					},
+					"cn": [
+						{
+							"cid": "form",
+							"jsClass": "MyForm",
+							"userConfig": {
+								"title": "Form"
+							}
+						},
+						{
+							"cid": "grid",
+							"jsClass": "MyGrid",
+							"userConfig": {
+								"viewConfig": {
+									"forceFit": true
+								},
+								"store": "MyStore"
+							},
+							"cn": [
+								{
+									"cid": "gridcolumn",
+									"jsClass": "MyColumn",
+									"userConfig": {
+										"dataIndex": "id",
+										"header": "ID"
+									}
+								},
+								{
+									"cid": "gridcolumn",
+									"jsClass": "MyColumn1",
+									"userConfig": {
+										"dataIndex": "name",
+										"header": "Name"
+									}
+								},
+								{
+									"cid": "gridcolumn",
+									"jsClass": "MyColumn2",
+									"userConfig": {
+										"header": "Description",
+										"dataIndex": "desc"
+									}
+								}
+							]
+						}
+					]
+				},
+				{
+					"cid": "tree",
+					"jsClass": "MyTree",
+					"userConfig": {
+						"region": "west",
+						"width": 209,
+						"split": true
+					},
+					"cn": [
+						{
+							"cid": "asyncnode",
+							"dock": "root",
+							"userConfig": {
+								"text": "Root Node"
+							}
+						},
+						{
+							"cid": "asynctreeloader",
+							"dock": "loader",
+							"userConfig": {
+								"url": "tree.json"
+							}
+						}
+					]
+				}
+			]
+		}
+	],
+	"stores": [
+		{
+			"cid": "jsonstore",
+			"jsClass": "MyStore",
+			"userConfig": {
+				"url": "data.json",
+				"autoLoad": true
+			},
+			"cn": [
+				{
+					"cid": "datafield",
+					"jsClass": "MyField",
+					"userConfig": {
+						"name": "id"
+					}
+				},
+				{
+					"cid": "datafield",
+					"jsClass": "MyField1",
+					"userConfig": {
+						"name": "name"
+					}
+				},
+				{
+					"cid": "datafield",
+					"jsClass": "MyField2",
+					"userConfig": {
+						"name": "desc"
+					}
+				}
+			]
+		}
+	]
+}

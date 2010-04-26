@@ -1,0 +1,9 @@
+[
+{text: 'node01', leaf: true},
+{text: 'node02', leaf: true},
+{text: 'node03', children: [
+	{text: 'node03-01', leaf: true},
+	{text: 'node03-02', leaf: true},
+	{text: 'node03-03', leaf: true}
+]}
+]
